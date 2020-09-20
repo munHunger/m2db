@@ -1,3 +1,5 @@
+mod testhash;
+
 use std::string::String;
 
 struct Node {
