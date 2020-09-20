@@ -1,4 +1,5 @@
 mod testhash;
+mod indexer;
 
 use std::string::String;
 
@@ -43,7 +44,7 @@ impl Node {
 }
 
 fn main() {
-    let mut node = Node::new(8, String::from("parent"));
+    /*let mut node = Node::new(8, String::from("parent"));
     let child = Node::new(2, String::from("child"));
     node.add_relation(child);
     let child2 = Node::new(23, String::from("sibling"));
@@ -51,4 +52,7 @@ fn main() {
     println!("{},{} -> {}", node.data, node.id, node.relation[0].data);
     node.remove_relation(2);
     println!("{},{} -> {}", node.data, node.id, node.relation[0].data);
+    */
+    //testhash::test();
+    indexer::lolakos();
 }
