@@ -142,6 +142,15 @@ impl M2DB {
             .expect(&format!("could not open file {}", path)[..]);
     }
 
+    /// Creates the needed file handlers to manage the database.
+    /// If the db doesn't exist it will be created
+    /// # Arguments
+    /// * `path` a path to where the data should be stored relative to working directory
+    /// # Examples
+    /// ```
+    /// use m2db::M2DB;
+    /// let m2db = M2DB::open_database("./m2db");
+    /// ```
     pub fn open_database(path: &str) -> M2DB {
         let m2db = M2DB {
             data: M2DB::open_file(format!("{}/data.m2db", path)),
@@ -152,6 +161,19 @@ impl M2DB {
         return m2db;
     }
 
+    /// Marks a space in the datafile as deleted and up for grabs
+    /// when allocating new data
+    /// # Arguments
+    /// * `start` the offset in the data file to start marking as deleted
+    /// * `size` the amount of bytes to mark as deleted
+    /// # Examples
+    /// ```
+    /// use m2db::M2DB;
+    /// use m2db::Node;
+    /// let mut m2db = M2DB::open_database("./m2db");
+    /// m2db.add_node(&mut Node::new());
+    /// m2db.delete_bytes(0, 26);
+    /// ```
     pub fn delete_bytes(&mut self, start: u32, size: u32) {
         self.data_fragments
             .seek(SeekFrom::Start(0))
