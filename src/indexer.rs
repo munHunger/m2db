@@ -1,40 +1,32 @@
 use std::collections::HashMap;
-use std::hash::Hash;
 use std::collections::hash_map::RandomState;
 
-
-/*fn my_insert<'a>(mut hashmap: HashMap<&str, i32>, key: &'a str, value: i32) -> &HashMap<&str, i32, RandomState> {
-    hashmap.insert(key, value);
-    &hashmap;
-}
- */
-
-fn add(a: &mut i32, b : i32) -> &i32 {
-    *a = *a +  b;
-    return a;
-}
-
-fn my_insert<'a>(hashmap: &'a mut HashMap<&'static str, i32>, key: &'static str, value: i32)
-    -> &'a HashMap<&'static str, i32>{
+fn my_insert<'a>(hashmap: &'a mut HashMap<&'static str, i32>, key: &'static str, value: i32) -> &'a HashMap<&'static str, i32>{
+    //dereferencing hashmap and inserting new key->value pair
     (*hashmap).insert(key, value);
-    return hashmap;
+    return hashmap; //returning the hashmap with the new values
 }
 
-pub fn lolakos(){
-    println!("Hola muchacho!");
-    let a = &mut 3;
-    let x = add(a, 4);
-    println!("{}", a);
-    let mut book_reviews = &mut HashMap::new();
-    my_insert(book_reviews, "hello", 42);
-    println!("{}", book_reviews.get("hello").expect("lolakos"));
-    /*let arr: [&HashMap<&str, i32, RandomState>; 3] = [my_insert(book_reviews, "lol", 31),
-        my_insert(HashMap::new(), "lolk", 310),
-        my_insert(HashMap::new(), "lolo", 3154)];
-
-    for &sticazzi in &arr{
-        println!("{}", 42);
+fn initialize<'a>(mut vector: Vec<HashMap<&'a str, i32>>) -> Vec<HashMap<&'a str, i32, RandomState>> {
+    //initializing 36 spots: 26 english letters + 10 numbers
+    for n in 0..36 {
+        vector.push(HashMap::new());
     }
+    return vector;
+}
 
-     */
+
+pub fn add<'a>(mut vector: Vec<HashMap<&'a str, i32>>, name: &str) -> bool {
+    let mut ch : char = name.chars().next().expect("?"); //extracting first character
+    ch = ch.to_ascii_lowercase();
+    let i  = ch.to_digit(10);
+    println!("{:?}\t{:?}", ch, i);
+    return 1 == 2;
+}
+
+pub(crate) fn main(){
+    let mut v = Vec::new();
+    v = initialize(v);
+    println!("{:#?}", v);
+    add(v, "Tesla");
 }

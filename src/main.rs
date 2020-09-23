@@ -1,4 +1,5 @@
 mod testhash;
+mod lol;
 mod indexer;
 
 use std::string::String;
@@ -54,5 +55,5 @@ fn main() {
     println!("{},{} -> {}", node.data, node.id, node.relation[0].data);
     */
     //testhash::test();
-    indexer::lolakos();
+    indexer::main();
 }
